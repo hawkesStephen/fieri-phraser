@@ -44,7 +44,7 @@ h2 {
 
 @keyframes App-transform {
   from {
-    transform: skewX(0deg);
+    transform: skewX(120deg);
   }
   to {
     transform: skewX(360deg);

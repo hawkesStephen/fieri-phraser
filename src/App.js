@@ -9,31 +9,20 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      data: {},
-      text: 'What am I gonna say?'
+      data: {
+        quote: 'What am I gonna say?'
+      }
     }
   }
 
-  async componentDidMount() {
+
+  async getPhraseFromApi() {
     const returnedQuote = await networkCaller('https://4ozc0qiiec.execute-api.us-east-1.amazonaws.com/prod/quote')
     this.setState({ data: returnedQuote })
   }
 
-  changeText() {
-    this.setState({
-      text: this.state.data.quote
-    })
-  }
-
-  reset() {
-    this.setState({
-      text: 'What am I gonna say?'
-    })
-    this.componentDidMount()
-  }
-
   render() {
-    let standardText = this.state.text
+    let standardText = this.state.data.quote
     return (
       <>
         <body className='App-header'>
@@ -43,8 +32,7 @@ class App extends React.Component {
           </div>
           <div className='App-body'>
             <h2>{standardText}</h2>
-            <Button onClick={this.changeText.bind(this)}>Click to Find Out</Button>
-            <Button onClick={this.reset.bind(this)}>Reset</Button>
+            <Button onClick={this.getPhraseFromApi.bind(this)}>Click to Find Out</Button>
           </div>
         </body>
       </>
