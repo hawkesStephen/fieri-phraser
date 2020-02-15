@@ -21,6 +21,16 @@ class App extends React.Component {
     this.setState({ data: returnedQuote })
   }
 
+  waiting() {
+    this.setState({
+      data: {
+        quote: 'waiting...'
+      }
+    })
+
+    this.getPhraseFromApi()
+  }
+
   render() {
     let standardText = this.state.data.quote
     return (
@@ -32,7 +42,7 @@ class App extends React.Component {
           </div>
           <div className='App-body'>
             <h2>{standardText}</h2>
-            <Button onClick={this.getPhraseFromApi.bind(this)}>Click to Find Out</Button>
+            <Button onClick={this.waiting.bind(this)}>Click to Find Out</Button>
           </div>
         </body>
       </>
