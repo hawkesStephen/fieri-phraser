@@ -1,20 +1,29 @@
-import React from 'react';
-import './App.css';
-import Quote from './components/Quote';
+import React from 'react'
+import './App.css'
+import Main from './components/Main'
+import Login from './components/Login'
+
 
 
 class App extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      isLoggedIn: false
+    }
+  }
+  
+
+  switchLogin() {
+    this.setState({
+      isLoggedIn: !this.state.isLoggedIn
+    })
+  }
+
   render() {
     return (
-      <>
-        <body className='App-header'>
-          <div>
-            <h1>Welcome to The Fieri Phraser</h1>
-            <img className='App-logo' src="https://media.gq.com/photos/59dfc6d9d61cb80476584e18/16:9/w_1280,c_limit/guy-fieiri-flame.jpg" alt="Guy Fieri"></img>
-          </div>
-          <Quote />
-        </body>
-      </>
+      this.state.isLoggedIn ? <Main /> : <Login login={this.switchLogin.bind(this)}/>
     )
   }
 }
