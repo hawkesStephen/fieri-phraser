@@ -15,7 +15,7 @@ class App extends React.Component {
   }
   
 
-  switchLogin() {
+  switchLogin = () => {
     this.setState({
       isLoggedIn: !this.state.isLoggedIn
     })
@@ -23,7 +23,7 @@ class App extends React.Component {
 
   render() {
     return (
-      this.state.isLoggedIn ? <Main /> : <Login login={this.switchLogin.bind(this)}/>
+      this.state.isLoggedIn ? <Main /> : <Login login={this.switchLogin}/>
     )
   }
 }
