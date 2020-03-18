@@ -14,12 +14,12 @@ class Quote extends React.Component {
         }
     }
 
-    async getPhraseFromApi() {
+    getPhraseFromApi = async () => {
         const returnedQuote = await networkCaller('https://4ozc0qiiec.execute-api.us-east-1.amazonaws.com/prod/quote')
         this.setState({ data: returnedQuote })
     }
 
-    waiting() {
+    waiting = () => {
         this.setState({
             data: {
                 quote: 'waiting...'
@@ -34,7 +34,7 @@ class Quote extends React.Component {
         return (
             <div className='App-body'>
                 <h2>{standardText}</h2>
-                <Button onClick={this.waiting.bind(this)}>Click to Find Out</Button>
+                <Button onClick={this.waiting}>Click to Find Out</Button>
             </div>
         )
     }
