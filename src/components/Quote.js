@@ -1,43 +1,29 @@
-import React from 'react'
-import Button from '@material-ui/core/Button'
-import networkCaller from '../utils/network'
+import React, { useState } from 'react'
+import { Button } from '@material-ui/core'
 import '../App.css'
 
-class Quote extends React.Component {
-    constructor(props) {
-        super(props)
+let apiUrl = 'https://4ozc0qiiec.execute-api.us-east-1.amazonaws.com/prod/quote'
 
-        this.state = {
-            data: {
-                quote: "What am I gonna say?"
-            }
-        }
+const Quote = () => {
+    const [quote, setQuote] = useState('What am I gonna say?')
+
+    const getPhraseFromApi = async () => {
+        const response = await fetch(apiUrl)
+        const { quote } = await response.json()
+        setQuote(quote)
     }
 
-    getPhraseFromApi = async () => {
-        const returnedQuote = await networkCaller('https://4ozc0qiiec.execute-api.us-east-1.amazonaws.com/prod/quote')
-        this.setState({ data: returnedQuote })
+    const displayPhrase = () => {
+        setQuote('Waiting...')
+        getPhraseFromApi()
     }
 
-    waiting = () => {
-        this.setState({
-            data: {
-                quote: 'waiting...'
-            }
-        })
-
-        this.getPhraseFromApi()
-    }
-
-    render() {
-        let standardText = this.state.data.quote
-        return (
-            <div className='App-body'>
-                <h2>{standardText}</h2>
-                <Button onClick={this.waiting}>Click to Find Out</Button>
-            </div>
-        )
-    }
+    return (
+        < div className='App-body' >
+            <h2>{quote}</h2>
+            <Button onClick={displayPhrase}>Click to Find Out</Button>
+        </div >
+    )
 }
 
 export default Quote
