@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Button } from '@material-ui/core'
 import '../App.css'
 
-let apiUrl = 'https://4ozc0qiiec.execute-api.us-east-1.amazonaws.com/prod/quote'
+// let apiUrl = 'https://4ozc0qiiec.execute-api.us-east-1.amazonaws.com/prod/quote'
+let apiUrl = 'http://localhost:5000'
 
 const Quote = () => {
     const [quote, setQuote] = useState('What am I gonna say?')
